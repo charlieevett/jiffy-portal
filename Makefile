@@ -46,6 +46,10 @@ update_pymongo: submodule_update
 	@cp -r deps/pymongo/bson lib/
 	@cp -r deps/pymongo/gridfs lib/
 
+update_mongoalchemy: submodule_update
+	@echo 'Updating mongoalchemy...'
+	@cp -r deps/pymongo/pymongo lib/
+
 libs: update_werkzeug update_jinja2 update_flask update_simplejson update_wtforms update_pymongo
 
 bootstrap: libs
