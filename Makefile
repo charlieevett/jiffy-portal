@@ -32,10 +32,6 @@ update_flask: submodule_update
 	@echo 'Updating Flask...'
 	@cp -r deps/flask/flask lib/
 
-update_simplejson: submodule_update
-	@echo 'Updating simplejson...'
-	@cp -r deps/simplejson/simplejson lib/
-
 update_wtforms: submodule_update
 	@echo 'Updating wtforms...'
 	@cp -r deps/wtforms/wtforms lib/
@@ -50,7 +46,7 @@ update_mongoalchemy: submodule_update
 	@echo 'Updating mongoalchemy...'
 	@cp -r deps/pymongo/pymongo lib/
 
-libs: update_werkzeug update_jinja2 update_flask update_simplejson update_wtforms update_pymongo
+libs: update_werkzeug update_jinja2 update_flask update_wtforms update_pymongo
 
 bootstrap: libs
 	@echo 'Creating the settings.py file...'

@@ -1,8 +1,5 @@
 # coding:utf-8
 # Copyright 2011 Litl, LLC. All Rights Reserved.
-import calendar
-from datetime import datetime
-from simplejson import dumps
 import logging
 from werkzeug import generate_password_hash, check_password_hash
 
