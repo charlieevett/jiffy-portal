@@ -13,3 +13,6 @@
 [submodule "deps/wtforms"]
 	path = deps/wtforms
 	url = https://github.com/clones/wtforms.git
+[submodule "deps/flask-mongoalchemy"]
+	path = deps/flask-mongoalchemy
+	url = https://github.com/cobrateam/flask-mongoalchemy.git
