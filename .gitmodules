@@ -16,3 +16,6 @@
 [submodule "deps/flask-mongoalchemy"]
 	path = deps/flask-mongoalchemy
 	url = https://github.com/cobrateam/flask-mongoalchemy.git
+[submodule "deps/mongoalchemy"]
+	path = deps/mongoalchemy
+	url = https://github.com/jeffjenkins/MongoAlchemy.git
