@@ -1,0 +1,64 @@
+@the-border: 1px;
+@base-color: #111;
+@litl-blue: #9AD7DB;
+@litl-light-blue: #F1FAFA;
+@litl-gray: #666666;
+@litl-light-gray: #CCCCCC;
+@litl-hover-on-white: #CDEBED;
+@litl-red: #990000;
+
+#container {
+    margin: 20px;
+    .flashes {
+        margin: 0px;
+        padding-bottom: 20px;
+        list-style-type: circle;
+        list-style-position: inside;
+        color: @litl-blue;
+    }
+    #id_login_link {
+        padding-top: 20px;
+    }
+    #id_list_wrapper {
+      th {
+        border-right: 4px solid white;
+        padding: 2px 10px 2px 10px;
+        font-size: 12px;
+        font-weight: bold;
+        background: @litl-light-blue;
+        color: @litl-light-gray;
+        line-height: 20px;
+      }
+      td {
+        padding: 2px 5px 2px 0px;
+      }
+    }
+    #id_listing_buttons {
+        padding-top: 20px;
+    }
+
+    footer {
+        padding-top: 20px;
+        font-size: 10px;
+    }
+
+    dt {
+        padding: 10px 5px 0px 0px;
+    }
+
+    .form_buttons {
+        padding-top: 20px;
+    }
+    .errors {
+        display: inline-block;
+        color: @litl-red;
+        padding-top: 2px;
+    }
+}
+
+button {
+    background: @litl-blue;
+    border: 0px;
+    &:hover { background: @litl-hover-on-white; color: white }
+}
+

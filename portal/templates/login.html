@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Login</h2>
+        {% if error %}
+        <div class="errors">{{ error }}</div>
+        {% endif %}
+  <form action="{{ url_for('login') }}" method=post>
+  {% from "_formhelpers.html" import render_field %}
+    <dl>
+      {{ render_field(form.email) }}
+      {{ render_field(form.password) }}
+    </dl>
+  <div class="form_buttons">
+      <button name="create" id="id_cancel_button" onclick="location.href = '/'; return false;">Cancel</button>
+      <button name="create" id="id_login_button" onclick="form.submit();">Login</button>
+  </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Users{% endblock %}
+{% block content %}
+    <h1>Users</h1>
+    <div id="id_list_wrapper">
+    <table>
+        <thead><th>email</th><th>first name</th><th>last name</th></thead>
+        {% for user in users %}
+        <tr>
+            <td><a href="/user/{{ user.email }}/">{{ user.email }}</a></td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+        <div id="id_listing_buttons">
+            <button name="create" id="id_create_button" onclick="location.href = '/user/create';">Create User</button>
+            <button name="logout" id="id_logout_button" onclick="location.href = '/logout';">Logout</button>
+        </div>
+{% endblock %}

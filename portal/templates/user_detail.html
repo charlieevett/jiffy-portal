@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Users{% endblock %}
+{% block content %}
+    <h1>Edit User</h1>
+    <div id="id_user_form_wrapper">
+    {% from "_formhelpers.html" import render_field %}
+    <form method="post" action="/user/save/">
+      <dl>
+        {{ render_field(form.email) }}
+        {{ render_field(form.first_name) }}
+        {{ render_field(form.last_name) }}
+        {{ form.id|safe }}
+        {% if needs_password %}
+            {{ render_field(form.password) }}
+            {{ render_field(form.confirm) }}
+            <input type="hidden" name="needs_password" value="yes">
+        {% endif %}
+      </dl>
+      <div class="form_buttons">
+          <button name="create" id="id_cancel_button" onclick="location.href = '{{ url_for("users.list_users") }}'; return false;">Cancel</button>
+          <button name="create" id="id_create_button" onclick="form.submit();">Save</button>
+          {% if not needs_password %}
+              <button name="create" id="id_change_password" onclick="location.href = '/user/{{ form.email.data }}/change_password'; return false;">Change Password</button>
+          {% endif %}
+      </div>
+    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h1>Home</h1>
+    <p class="important">
+      Welcome to the litl management portal.
+    </p>
+    {% if session.logged_in %}
+    <div id="id_user_list_link"><a href="{{ url_for('users.list_users') }}">All Users</a></div>
+    <div id="id_logout_link"><a href="/logout">Logout</a></div>
+    {% else %}
+    <div id="id_login_link"><a href="/login">Login</a></div>
+    {% endif %}
+{% endblock %}

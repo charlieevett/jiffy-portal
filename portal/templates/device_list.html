@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Devices{% endblock %}
+{% block content %}
+    <h1>Devices</h1>
+    <div id="id_list_wrapper">
+    <table>
+        <thead><th>serial number</th><th>last update</th><th>software version</th><th>last ip</th></thead>
+        {% for device in devices %}
+        <tr>
+            <td><a href="/devices/{{ device.guid }}/">{{ device.serial_number }}</a></td>
+            <td>{{ device.last_updated }}</td>
+            <td>{{ device.software_version }}</td>
+            <td>{{ device.last_ip_address() }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+        <div id="id_listing_buttons">
+            <button name="logout" id="id_logout_button" onclick="location.href = '/logout';">Logout</button>
+        </div>
+{% endblock %}
