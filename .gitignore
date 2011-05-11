@@ -1,0 +1,6 @@
+portal/settings.py
+*.iml
+*.pyc
+lib
+.coverage
+coverage_html
