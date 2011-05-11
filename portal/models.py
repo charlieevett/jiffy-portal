@@ -3,26 +3,20 @@
 import logging
 from werkzeug import generate_password_hash, check_password_hash
 
-from pymongo import Connection
+from flaskext.mongoalchemy import MongoAlchemy
 from pymongo.objectid import ObjectId
 
-connection = Connection()
-db = connection.test_database
+db = MongoAlchemy()
 
-class PortalUser(object):
+class PortalUser(db.Document):
 
-    def __init__(self, first_name="", last_name="", email="", password_hash="", dict=None):
-        if dict:
-            self.__dict__.update(dict)
-            return
-
-        self.email = email
-        self.first_name = first_name
-        self.last_name = last_name
-        self.password_hash = password_hash
+    email = db.StringField()
+    first_name = db.StringField(required=False)
+    last_name = db.StringField(required=False)
+    password_hash = db.StringField(required=False, default="")
 
     def get_id(self):
-        return self._id
+        return self.mongo_id
 
     def set_id(self, value):
         # can't change the id
@@ -32,24 +26,15 @@ class PortalUser(object):
 
     @classmethod
     def find_by_email(cls, email):
-        raw_user = db.users.find_one({"email": email})
-        if raw_user:
-            user = PortalUser(dict=raw_user)
-            return user
-        else:
-            return None
+        return PortalUser.query.filter({"email": email}).first()
 
     @classmethod
     def find_by_key(cls, key):
-        raw_user = db.users.find_one({"_id": ObjectId(key)})
-        if raw_user:
-            return PortalUser(dict=raw_user)
-        else:
-            return None
+        return PortalUser.query.filter({"mongo_id": ObjectId(key)}).first()
 
     @classmethod
     def all(cls):
-        return db.users.find()
+        return PortalUser.query.all()
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -64,10 +49,5 @@ class PortalUser(object):
 
     @classmethod
     def no_users(cls):
-        return db.users.count() == 0
-
-    def put(self):
-        json = dict(self.__dict__)
-        users = db.users
-        return users.save(json)
+        return PortalUser.query.count() == 0
 

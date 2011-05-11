@@ -34,7 +34,7 @@ def save_user():
         form.populate_obj(user)
         if 'password' in request.form:
             user.set_password(form.password.data)
-        user.put()
+        user.save()
         return redirect(url_for('list_users'))
     else:
         return render_template('user_detail.html', form=form, needs_password=needs_password)
@@ -57,7 +57,7 @@ def change_password(email):
         if form.validate():
             user = PortalUser.find_by_email(email)
             user.set_password(form.password.data)
-            user.put()
+            user.save()
             flash('Password changed')
             return redirect('/user/%s/' % email)
     else:

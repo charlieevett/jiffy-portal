@@ -13,9 +13,9 @@ from bson import ObjectId
 class PortalTestCase(unittest.TestCase):
 
     def setUp(self):
-        db.users.drop()
         self.app = portal.app.create_app()
         self.client = self.app.test_client()
+        db.session.clear_collection(PortalUser)
 
     def tearDown(self):
         pass
@@ -31,7 +31,7 @@ class PortalTestCase(unittest.TestCase):
 
     def test_user_model(self):
         user = PortalUser(email="test@test.com", first_name="Test", last_name="User")
-        user.put()
+        user.save()
         assert PortalUser.find_by_email("test@test.com")
 
         assert PortalUser.find_by_key(ObjectId()) == None
@@ -94,7 +94,7 @@ class PortalTestCase(unittest.TestCase):
     def test_passwords(self):
         user = PortalUser(email="test@test.com", first_name="Test", last_name="User")
         user.set_password("password")
-        user.put()
+        user.save()
         assert PortalUser.check_login("test@test.com", "password")
         assert not PortalUser.check_login("wrong@test.com", "password")
         assert not PortalUser.check_login("test@test.com", "wrong")
@@ -102,7 +102,7 @@ class PortalTestCase(unittest.TestCase):
     def test_login(self):
         user = PortalUser(email="test@test.com", first_name="Test", last_name="User")
         user.set_password("password")
-        user.put()
+        user.save()
         response = self.client.get('/login')
         assert response.status_code == 200
 
@@ -126,7 +126,7 @@ class PortalTestCase(unittest.TestCase):
 
     def test_bootstrap_error(self):
         user = PortalUser(email="test@test.com", first_name="Test", last_name="User")
-        user.put()
+        user.save()
         response = self.client.get('/bootstrap/')
         # since we have a user now, bootstrap should fail
         response = self.client.get('/user/create/')
@@ -136,7 +136,7 @@ class PortalTestCase(unittest.TestCase):
     def test_change_password(self):
         user = PortalUser(email="test@test.com", first_name="Test", last_name="User")
         user.set_password("password")
-        user.put()
+        user.save()
         login_data = { "email": "test@test.com", "password": "password"}
         response = self.client.post('/login', data=login_data, follow_redirects=True)
 
@@ -157,13 +157,13 @@ class PortalTestCase(unittest.TestCase):
     def test_change_email(self):
         user = PortalUser(email="test@test.com", first_name="Test", last_name="User")
         user.set_password("password")
-        id = user.put()
+        user.save()
         login_data = { "email": "test@test.com", "password": "password"}
         response = self.client.post('/login', data=login_data, follow_redirects=True)
         test_data = { "email": 'newemail@test.com',
                       "first_name": "Test",
                       "last_name": "User",
-                      "id": str(id),
+                      "id": str(user.id),
                     }
         response = self.client.post('/user/save/', data=test_data, follow_redirects=False)
         assert PortalUser.find_by_email("newemail@test.com")
