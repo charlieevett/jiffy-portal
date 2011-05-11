@@ -1,0 +1,15 @@
+[submodule "deps/flask"]
+	path = deps/flask
+	url = https://github.com/mitsuhiko/flask.git
+[submodule "deps/werkzeug"]
+	path = deps/werkzeug
+	url = https://github.com/mitsuhiko/werkzeug.git
+[submodule "deps/jinja2"]
+	path = deps/jinja2
+	url = https://github.com/mitsuhiko/jinja2.git
+[submodule "deps/pymongo"]
+	path = deps/pymongo
+	url = https://github.com/mongodb/mongo-python-driver.git
+[submodule "deps/wtforms"]
+	path = deps/wtforms
+	url = https://github.com/clones/wtforms.git
