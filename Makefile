@@ -44,9 +44,9 @@ update_pymongo: submodule_update
 
 update_mongoalchemy: submodule_update
 	@echo 'Updating mongoalchemy...'
-	@cp -r deps/pymongo/pymongo lib/
+	@cp -r deps/flask-mongoalchemy/flaskext lib/
 
-libs: update_werkzeug update_jinja2 update_flask update_wtforms update_pymongo
+libs: update_werkzeug update_jinja2 update_flask update_wtforms update_pymongo update_mongoalchemy
 
 bootstrap: libs
 	@echo 'Creating the settings.py file...'
