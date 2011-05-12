@@ -16,6 +16,4 @@ if __name__ == '__main__':
                   help="activate the flask debugger")
     (options, args) = parser.parse_args()
     app.debug = options.debug
-    if app.debug:
-        print "Starting with flask debugger on"
     app.run()
