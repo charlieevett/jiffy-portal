@@ -68,7 +68,7 @@ If the tests are working it's a good time to run the web app locally. This is do
  <nowiki>$ make run
  * Running on http://127.0.0.1:5000/
  * Restarting with reloader: stat() polling
-</nowiki>
+ </nowiki>
 
 Browse to [http://localhost:5000 localhost:5000] to check it out.
 
@@ -96,4 +96,4 @@ Ran 10 tests in 0.573s
 OK
 coverage html --d coverage_html --include=portal/*
 open coverage_html/index.html
-</nowiki>
+ </nowiki>
