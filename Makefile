@@ -47,7 +47,12 @@ update_mongoalchemy: submodule_update
 	@cp -r deps/mongoalchemy/mongoalchemy lib/
 	@cp -r deps/flask-mongoalchemy/flaskext lib/
 
-libs: update_werkzeug update_jinja2 update_flask update_wtforms update_pymongo update_mongoalchemy
+update_beanstalkc: submodule_update
+	@echo 'Updating beanstalkc...'
+	@cp -r deps/beanstalkc/beanstalkc.py lib/
+
+
+libs: update_werkzeug update_jinja2 update_flask update_wtforms update_pymongo update_mongoalchemy update_beanstalkc
 
 bootstrap: libs
 	@echo 'Creating the settings.py file...'

@@ -19,3 +19,6 @@
 [submodule "deps/mongoalchemy"]
 	path = deps/mongoalchemy
 	url = https://github.com/jeffjenkins/MongoAlchemy.git
+[submodule "deps/beanstalkc"]
+	path = deps/beanstalkc
+	url = https://github.com/earl/beanstalkc.git
