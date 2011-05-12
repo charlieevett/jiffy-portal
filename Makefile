@@ -3,7 +3,7 @@ test:
 	@nosetests -w tests
 
 run:
-	@python main.py
+	@python main.py --debug
 
 coverage: coverage_html/index.html
 	open coverage_html/index.html

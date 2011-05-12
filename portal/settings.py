@@ -1,5 +1,5 @@
 # This file is auto-generated! Do not edit or check into git.
 DEBUG=True
-SECRET_KEY="n0dJ7IH9MWtx6Wvh6RM9yMUSuguLoGI4"
+SECRET_KEY="KqaejVCBx1J8ZLdmVXHpSY9J34obIT9Y"
 CSRF_ENABLED=True
-CSRF_SESSION_KEY="FlUPokHCdgdVQq5xsGHoR2MhL1gyXCAJ"
+CSRF_SESSION_KEY="cnFB4xWSlNKNgbMaS94F32uh5WYsWpKU"
