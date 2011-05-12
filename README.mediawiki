@@ -1,0 +1,99 @@
+See [https://docs.google.com/a/litl.com/document/d/1GzlMlV1r4DVqMzdXE946Sa2KH4iRwpM7Slqrrun3u8o/edit?authkey=CNXvhZMD&hl=en# the GFY architecture document].
+
+This is what I've learned so far about setting up a system with mongo, flask, and beanstalkd
+
+== Set up Mongo DB ==
+
+See [http://www.mongodb.org/ http://www.mongodb.org/] for full info.
+
+Using a package manager is a good idea for installing this.
+On mac, you can use HomeBrew or MacPorts:
+
+ <nowiki>$ sudo port install mongodb</nowiki>
+
+For linux you can use their apt repository -- [http://www.mongodb.org/display/DOCS/Ubuntu+and+Debian+packages See this page for instructions].
+
+So far, I've just been running mongo locally on my machine from the command line:
+
+ <nowiki>
+$ mongod
+Thu May 12 09:58:26 MongoDB starting : pid=72018 port=27017 dbpath=/data/db/ 64-bit
+...
+Thu May 12 09:58:26 [initandlisten] waiting for connections on port 27017
+Thu May 12 09:58:26 [websvr] web admin interface listening on port 28017
+</nowiki>
+
+Once you have it running you can check out the [http://localhost:28017 web admin ui].
+
+== Setting up the flask app ==
+
+You can get the flask app ready to run using the '''build''' target in the Makefile:
+
+ <nowiki>$ make build
+Updating submodules...
+...
+Creating the settings.py file...
+Done.
+</nowiki>
+
+This should update the deps directory, pulling in submodules for the dependencies for our flask+mongo apps:
+* '''pymongo''' -- the python mongodb driver [http://api.mongodb.org/python/current/]
+* '''mongoalchemy''' -- an object-mongo mapping helper [http://mongoalchemy.org/]
+* '''flask''' -- a lightweight python web framework [http://flask.pocoo.org/]
+* '''jinja2''' -- a template engine [http://jinja.pocoo.org/]
+* '''werkzeug''' -- url routing and sessions [http://werkzeug.pocoo.org/]
+* '''wtforms''' -- a forms package [http://wtforms.simplecodes.com/]
+* '''beanstalkc''' -- a python client for beanstalkd [https://github.com/earl/beanstalkc/#readme]
+
+== Testing the app ==
+
+Before you can test you need to install '''nose'''. You can do this using pip, or try the Makefile:
+ <nowiki>$ make nose
+Installing nose if needed...
+</nowiki>
+
+Now you should be ready to run the tests. This is easily done using the Makefile '''test''' target.
+ <nowiki>$ make test
+Running all tests...
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.503s
+
+OK
+</nowiki>
+
+== Running the app ==
+
+If the tests are working it's a good time to run the web app locally. This is done using the '''run''' target.
+ <nowiki>$ make run
+ * Running on http://127.0.0.1:5000/
+ * Restarting with reloader: stat() polling
+</nowiki>
+
+Browse to [http://localhost:5000 localhost:5000] to check it out.
+
+== Checking code coverage ==
+
+You can see how well the tests are covering the app by using the '''coverage''' target. This will run the tests with coverage turned on and then pop up your browser on the results:
+
+ <nowiki>$ make coverage
+nosetests --with-coverage --cover-package=portal -w tests
+..........
+Name              Stmts   Miss  Cover   Missing
+-----------------------------------------------
+portal                0      0   100%
+portal.app           13      0   100%
+portal.forms         15      0   100%
+portal.login         33      0   100%
+portal.models        30      0   100%
+portal.settings       4      0   100%
+portal.users         46      0   100%
+-----------------------------------------------
+TOTAL               141      0   100%
+----------------------------------------------------------------------
+Ran 10 tests in 0.573s
+
+OK
+coverage html --d coverage_html --include=portal/*
+open coverage_html/index.html
+</nowiki>
