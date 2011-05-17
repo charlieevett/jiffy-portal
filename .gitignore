@@ -1,5 +1,7 @@
 portal/settings.py
 *.iml
+*.ipr
+*.iws
 *.pyc
 lib
 .coverage
