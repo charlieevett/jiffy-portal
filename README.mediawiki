@@ -9,7 +9,7 @@ See [http://www.mongodb.org/ http://www.mongodb.org/] for full info.
 Using a package manager is a good idea for installing this.
 On mac, you can use HomeBrew or MacPorts:
 
- <pre>
+<pre>
 $ sudo port install mongodb
 </pre>
 
@@ -17,7 +17,7 @@ For linux you can use their apt repository -- [http://www.mongodb.org/display/DO
 
 So far, I've just been running mongo locally on my machine from the command line:
 
- <pre>
+<pre>
 $ mongod
 Thu May 12 09:58:26 MongoDB starting : pid=72018 port=27017 dbpath=/data/db/ 64-bit
 ...
@@ -31,7 +31,8 @@ Once you have it running you can check out the [http://localhost:28017 web admin
 
 You can get the flask app ready to run using the '''build''' target in the Makefile:
 
- <pre>$ make build
+<pre>
+$ make build
 Updating submodules...
 ...
 Creating the settings.py file...
@@ -50,12 +51,14 @@ This should update the deps directory, pulling in submodules for the dependencie
 == Testing the app ==
 
 Before you can test you need to install '''nose'''. You can do this using pip, or try the Makefile:
- <pre>$ make nose
+<pre>
+$ make nose
 Installing nose if needed...
 </pre>
 
 Now you should be ready to run the tests. This is easily done using the Makefile '''test''' target.
- <pre>$ make test
+<pre>
+$ make test
 Running all tests...
 ..........
 ----------------------------------------------------------------------
@@ -67,7 +70,8 @@ OK
 == Running the app ==
 
 If the tests are working it's a good time to run the web app locally. This is done using the '''run''' target.
- <pre>$ make run
+<pre>
+$ make run
  * Running on http://127.0.0.1:5000/
  * Restarting with reloader: stat() polling
 </pre>
@@ -78,7 +82,8 @@ Browse to [http://localhost:5000 localhost:5000] to check it out.
 
 You can see how well the tests are covering the app by using the '''coverage''' target. This will run the tests with coverage turned on and then pop up your browser on the results:
 
- <pre>$ make coverage
+<pre>
+$ make coverage
 nosetests --with-coverage --cover-package=portal -w tests
 ..........
 Name              Stmts   Miss  Cover   Missing
