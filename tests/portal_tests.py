@@ -18,7 +18,7 @@ class PortalTestCase(unittest.TestCase):
         db.session.clear_collection(PortalUser)
 
     def tearDown(self):
-        pass
+        db.session.clear_collection(PortalUser)
 
     def test_index(self):
         response = self.client.get('/')

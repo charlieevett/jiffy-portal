@@ -5,14 +5,10 @@ test:
 run:
 	@python main.py --debug
 
-coverage: coverage_html/index.html
-	open coverage_html/index.html
-
-.coverage: portal/*.py portal/templates/*.html
+coverage:
 	nosetests --with-coverage --cover-package=portal -w tests
-
-coverage_html/index.html: .coverage
 	coverage html --d coverage_html --include=portal/*
+	open coverage_html/index.html
 
 submodule_update:
 	@echo 'Updating submodules...'
@@ -20,39 +16,31 @@ submodule_update:
 	@git submodule update
 	@mkdir -p lib
 
-update_werkzeug: submodule_update
+copy_libs: submodule_update
+	@echo 'Updating Flask...'
+	@cp -r deps/flask/flask lib/
 	@echo 'Updating Werkzeug...'
 	@cp -r deps/werkzeug/werkzeug lib/
-
-update_jinja2: submodule_update
 	@echo 'Updating Jinja2...'
 	@cp -r deps/jinja2/jinja2 lib/
 
-update_flask: submodule_update
-	@echo 'Updating Flask...'
-	@cp -r deps/flask/flask lib/
-
-update_wtforms: submodule_update
 	@echo 'Updating wtforms...'
 	@cp -r deps/wtforms/wtforms lib/
 
-update_pymongo: submodule_update
 	@echo 'Updating pymongo...'
 	@cp -r deps/pymongo/pymongo lib/
 	@cp -r deps/pymongo/bson lib/
 	@cp -r deps/pymongo/gridfs lib/
 
-update_mongoalchemy: submodule_update
 	@echo 'Updating mongoalchemy...'
 	@cp -r deps/mongoalchemy/mongoalchemy lib/
 	@cp -r deps/flask-mongoalchemy/flaskext lib/
 
-update_beanstalkc: submodule_update
 	@echo 'Updating beanstalkc...'
 	@cp -r deps/beanstalkc/beanstalkc.py lib/
 
 
-libs: update_werkzeug update_jinja2 update_flask update_wtforms update_pymongo update_mongoalchemy update_beanstalkc
+libs: copy_libs
 
 bootstrap: libs
 	@echo 'Creating the settings.py file...'

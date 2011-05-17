@@ -80,7 +80,8 @@ Browse to [http://localhost:5000 localhost:5000] to check it out.
 
 == Checking code coverage ==
 
-You can see how well the tests are covering the app by using the '''coverage''' target. This will run the tests with coverage turned on and then pop up your browser on the results:
+You can see how well the tests are covering the app by using the '''coverage''' target.
+This will run the tests with coverage turned on and then pop up your browser on the results:
 
 <pre>
 $ make coverage
