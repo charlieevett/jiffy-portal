@@ -9,7 +9,9 @@ See [http://www.mongodb.org/ http://www.mongodb.org/] for full info.
 Using a package manager is a good idea for installing this.
 On mac, you can use HomeBrew or MacPorts:
 
- <pre>$ sudo port install mongodb</pre>
+ <pre>
+$ sudo port install mongodb
+</pre>
 
 For linux you can use their apt repository -- [http://www.mongodb.org/display/DOCS/Ubuntu+and+Debian+packages See this page for instructions].
 
@@ -68,7 +70,7 @@ If the tests are working it's a good time to run the web app locally. This is do
  <pre>$ make run
  * Running on http://127.0.0.1:5000/
  * Restarting with reloader: stat() polling
- </pre>
+</pre>
 
 Browse to [http://localhost:5000 localhost:5000] to check it out.
 
@@ -96,4 +98,4 @@ Ran 10 tests in 0.573s
 OK
 coverage html --d coverage_html --include=portal/*
 open coverage_html/index.html
- </pre>
+</pre>
