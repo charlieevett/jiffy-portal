@@ -50,9 +50,10 @@ This should update the deps directory, pulling in submodules for the dependencie
 
 == Testing the app ==
 
-Before you can test you need to install '''nose'''. You can do this using pip, or try the Makefile:
+Before you can test you need to install '''nose'''.
 <pre>
-$ make nose
+$ sudo easy_install pip
+$ sudo pip install nose
 Installing nose if needed...
 </pre>
 
