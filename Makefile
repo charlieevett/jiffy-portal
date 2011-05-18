@@ -1,9 +1,15 @@
+MONGOD_DB_PATH=/tmp/mongod_db
+
 test:
 	@echo 'Running all tests...'
 	@nosetests -w tests
 
 run:
 	@python main.py --debug
+
+run_mongod:
+	@mkdir -p $(MONGOD_DB_PATH)
+	@mongod --dbpath $(MONGOD_DB_PATH)
 
 coverage:
 	nosetests --with-coverage --cover-package=portal -w tests
