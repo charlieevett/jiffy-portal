@@ -55,10 +55,6 @@ bootstrap: libs
 
 build: bootstrap
 
-nose:
-	@echo 'Installing nose if needed...'
-	@python -c 'import nose' 2>/dev/null || pip install nose
-
 clean:
 	@echo 'Cleaning...'
 	@find . -name "*.pyc" -exec rm -f {} \;
